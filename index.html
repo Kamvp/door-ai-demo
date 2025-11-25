@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Door-AI Studio | Project Charter v4.2</title>
+    <title>Door-AI Studio | Project Charter v5.0</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -104,7 +104,7 @@
                 <div class="flex items-center gap-2 text-brand-900">
                     <i class="fa-solid fa-layer-group text-xl"></i>
                     <span class="font-bold text-xl tracking-tight">Door-AI <span class="text-brand-600">Studio</span></span>
-                    <span class="bg-brand-100 text-brand-800 text-[10px] px-2 py-0.5 rounded-full font-mono uppercase tracking-wide border border-brand-200 ml-2">Project Charter v4.2</span>
+                    <span class="bg-brand-100 text-brand-800 text-[10px] px-2 py-0.5 rounded-full font-mono uppercase tracking-wide border border-brand-200 ml-2">Project Charter v5.0</span>
                 </div>
                 <div class="hidden md:flex gap-8 text-sm font-medium text-slate-500">
                     <a href="#vision" class="hover:text-brand-600 transition-colors">Vision</a>
@@ -242,7 +242,7 @@
                     <!-- Context Bar (Top Right) -->
                     <div class="flex gap-3 relative group">
                         <div class="absolute -top-8 right-0 bg-blue-600 text-white text-xs px-2 py-1 rounded shadow-lg animate-bounce">1. Context Controls</div>
-                        <div class="h-8 w-32 bg-blue-50 border border-blue-200 rounded flex items-center px-3 text-xs text-blue-600 font-bold">Placement ▼</div>
+                        <div class="h-8 w-32 bg-blue-50 border border-blue-200 rounded flex items-center px-3 text-xs text-blue-600 font-bold">Application ▼</div>
                         <div class="h-8 w-32 bg-blue-50 border border-blue-200 rounded flex items-center px-3 text-xs text-blue-600 font-bold">Viewpoint ▼</div>
                     </div>
                 </div>
@@ -253,18 +253,28 @@
                         <!-- 2. Input Area -->
                         <div class="bg-slate-50 border-2 border-dashed border-slate-200 rounded-xl p-4 flex flex-col items-center justify-center h-48 relative">
                             <div class="absolute -top-3 left-2 bg-slate-600 text-white text-[10px] px-2 py-0.5 rounded">2. Input Stage</div>
-                            <div class="w-12 h-12 bg-slate-200 rounded-full mb-2"></div>
+                            <div class="w-12 h-12 bg-slate-200 rounded-full mb-2 flex items-center justify-center text-slate-400"><i class="fa-solid fa-cloud-arrow-up"></i></div>
                             <div class="h-2 w-20 bg-slate-200 rounded"></div>
+                            <div class="text-[8px] text-slate-400 mt-2 text-center px-2">Drag & Drop or Click to Upload</div>
                         </div>
                         
                         <!-- 3. Drafts Strip -->
                         <div class="flex-1 bg-white border border-slate-200 rounded-xl p-3 flex flex-col relative">
-                            <div class="absolute -top-3 left-2 bg-slate-600 text-white text-[10px] px-2 py-0.5 rounded">3. Draft Concepts</div>
-                            <div class="text-xs font-bold text-slate-400 mb-2 uppercase">Concepts</div>
+                            <div class="absolute -top-3 left-2 bg-slate-600 text-white text-[10px] px-2 py-0.5 rounded">3. Concepts (Thumbnails)</div>
+                            <div class="text-xs font-bold text-slate-400 mb-2 uppercase">AI Concepts</div>
                             <div class="flex-1 flex flex-col gap-2 overflow-y-auto">
-                                <div class="h-24 bg-brand-50 border border-brand-200 rounded-lg w-full shrink-0"></div>
-                                <div class="h-24 bg-slate-50 border border-slate-100 rounded-lg w-full shrink-0"></div>
-                                <div class="h-24 bg-slate-50 border border-slate-100 rounded-lg w-full shrink-0"></div>
+                                <div class="h-24 bg-brand-50 border border-brand-200 rounded-lg w-full shrink-0 relative overflow-hidden">
+                                    <div class="absolute inset-0 flex items-center justify-center text-brand-200"><i class="fa-solid fa-image text-2xl"></i></div>
+                                    <div class="absolute bottom-0 w-full bg-black/50 text-white text-[8px] p-1">Concept 1</div>
+                                </div>
+                                <div class="h-24 bg-slate-50 border border-slate-100 rounded-lg w-full shrink-0 relative overflow-hidden">
+                                     <div class="absolute inset-0 flex items-center justify-center text-slate-200"><i class="fa-solid fa-image text-2xl"></i></div>
+                                    <div class="absolute bottom-0 w-full bg-black/50 text-white text-[8px] p-1">Concept 2</div>
+                                </div>
+                                <div class="h-24 bg-slate-50 border border-slate-100 rounded-lg w-full shrink-0 relative overflow-hidden">
+                                     <div class="absolute inset-0 flex items-center justify-center text-slate-200"><i class="fa-solid fa-image text-2xl"></i></div>
+                                    <div class="absolute bottom-0 w-full bg-black/50 text-white text-[8px] p-1">Concept 3</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -273,20 +283,20 @@
                     <div class="flex-1 flex flex-col gap-4">
                         <!-- 4. Preview Canvas -->
                         <div class="flex-1 bg-slate-900 rounded-xl relative flex items-center justify-center overflow-hidden group">
-                            <div class="absolute top-4 left-4 bg-black/50 text-white text-[10px] px-2 py-1 rounded backdrop-blur">4. Main Preview Canvas</div>
+                            <div class="absolute top-4 left-4 bg-black/50 text-white text-[10px] px-2 py-1 rounded backdrop-blur">4. Preview (Big Screen)</div>
                             <i class="fa-solid fa-image text-6xl text-slate-700"></i>
                             
                             <!-- 5. Refinement Panel Overlay -->
-                            <div class="absolute bottom-0 left-0 right-0 h-1/3 bg-white rounded-t-xl shadow-[0_-10px_30px_rgba(0,0,0,0.2)] p-4 transform translate-y-0 transition-transform">
+                            <div class="absolute bottom-0 left-0 right-0 h-1/3 bg-purple-50/95 border-t border-purple-200 flex flex-col items-center justify-center text-[8px] font-bold text-purple-600 shadow-inner p-2">
                                 <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-600 text-white text-[10px] px-2 py-0.5 rounded shadow-lg">5. Smart Refinement Panel</div>
-                                <div class="flex justify-between mb-3">
-                                    <div class="h-4 w-24 bg-slate-200 rounded"></div>
-                                    <div class="h-4 w-4 bg-slate-200 rounded"></div>
+                                <div class="mb-2 text-xs">Select Adjustment</div>
+                                <div class="flex gap-2 w-full justify-center">
+                                     <div class="h-8 w-16 bg-white rounded border border-purple-200 flex items-center justify-center">Wall Color</div>
+                                     <div class="h-8 w-16 bg-white rounded border-purple-200 flex items-center justify-center">Hardware</div>
+                                     <div class="h-8 w-16 bg-white rounded border-purple-200 flex items-center justify-center">Glass</div>
                                 </div>
-                                <div class="grid grid-cols-3 gap-2">
-                                    <div class="h-16 bg-purple-50 border border-purple-100 rounded-lg flex items-center justify-center text-purple-300 text-xs font-bold">Option A</div>
-                                    <div class="h-16 bg-purple-50 border border-purple-100 rounded-lg flex items-center justify-center text-purple-300 text-xs font-bold">Option B</div>
-                                    <div class="h-16 bg-purple-50 border border-purple-100 rounded-lg flex items-center justify-center text-purple-300 text-xs font-bold">Option C</div>
+                                <div class="mt-2 w-full px-4">
+                                    <div class="h-6 bg-white rounded border border-slate-200 text-[8px] flex items-center px-2 text-slate-400">Custom Prompt Input...</div>
                                 </div>
                             </div>
                         </div>
@@ -350,7 +360,7 @@
                     <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
                         <h3 class="text-xs font-bold text-slate-400 uppercase mb-4 tracking-wider">2. Select Tweak</h3>
                         <div class="grid grid-cols-3 gap-2">
-                            <button onclick="triggerTweak('WALL')" class="p-2 bg-white border border-slate-200 rounded text-xs font-medium hover:text-brand-600 hover:border-brand-500 transition-colors">Wall</button>
+                            <button onclick="triggerTweak('WALL')" class="p-2 bg-white border border-slate-200 rounded text-xs font-medium hover:text-brand-600 hover:border-brand-500 transition-colors">Wall Color</button>
                             <button onclick="triggerTweak('HARDWARE')" class="p-2 bg-white border border-slate-200 rounded text-xs font-medium hover:text-brand-600 hover:border-brand-500 transition-colors">Hardware</button>
                             <button onclick="triggerTweak('GLASS')" class="p-2 bg-white border border-slate-200 rounded text-xs font-medium hover:text-brand-600 hover:border-brand-500 transition-colors">Glass</button>
                         </div>
@@ -500,7 +510,7 @@
 
             if (!panel || !data) return;
 
-            title.innerText = `Refine ${element === 'WALL' ? 'Wall' : element === 'HARDWARE' ? 'Hardware' : 'Glass'}`;
+            title.innerText = `Refine ${element === 'WALL' ? 'Wall Color' : element === 'HARDWARE' ? 'Hardware' : 'Glass'}`;
             advice.innerHTML = data.advice;
             options.innerHTML = '';
             

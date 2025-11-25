@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Door-AI Studio | Project Charter v5.0</title>
+    <title>Door-AI Studio | Project Charter v8.0</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -93,6 +93,17 @@
 
         .slide-up { animation: slideUp 0.5s ease-out forwards; }
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        /* Interactive Wireframe Styles */
+        .wireframe-overlay {
+            transition: all 0.3s ease;
+        }
+        .option-pill {
+            animation: slideInRight 0.3s ease forwards;
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        @keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white scroll-smooth">
@@ -104,13 +115,12 @@
                 <div class="flex items-center gap-2 text-brand-900">
                     <i class="fa-solid fa-layer-group text-xl"></i>
                     <span class="font-bold text-xl tracking-tight">Door-AI <span class="text-brand-600">Studio</span></span>
-                    <span class="bg-brand-100 text-brand-800 text-[10px] px-2 py-0.5 rounded-full font-mono uppercase tracking-wide border border-brand-200 ml-2">Project Charter v5.0</span>
+                    <span class="bg-brand-100 text-brand-800 text-[10px] px-2 py-0.5 rounded-full font-mono uppercase tracking-wide border border-brand-200 ml-2">Project Charter v8.0</span>
                 </div>
                 <div class="hidden md:flex gap-8 text-sm font-medium text-slate-500">
                     <a href="#vision" class="hover:text-brand-600 transition-colors">Vision</a>
                     <a href="#workflow" class="hover:text-brand-600 transition-colors">Workflow</a>
                     <a href="#ui-wireframe" class="hover:text-brand-600 transition-colors text-brand-600 font-bold">UI Layout</a>
-                    <a href="#touchup" class="hover:text-brand-600 transition-colors">Smart Refinement</a>
                     <a href="#specs" class="hover:text-brand-600 transition-colors">Specs</a>
                 </div>
                 <a href="#specs" class="px-4 py-2 bg-brand-600 text-white rounded-lg text-xs font-bold uppercase tracking-wide shadow-md hover:bg-brand-700 transition-all">
@@ -228,7 +238,7 @@
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-slate-900">UI Architecture Layout</h2>
-                <p class="text-slate-500 mt-2">The exact placement of key controls to ensure usability and context awareness.</p>
+                <p class="text-slate-500 mt-2">Interactive Demo using your <b>Specific Assets</b>. (Images Embedded - No Setup Required)</p>
             </div>
 
             <!-- Wireframe Container -->
@@ -239,42 +249,55 @@
                         <div class="w-8 h-8 bg-brand-600 rounded"></div>
                         <div class="h-4 w-24 bg-slate-200 rounded"></div>
                     </div>
-                    <!-- Context Bar (Top Right) -->
+                    <!-- Context Bar (Top Right) - FUNCTIONAL DEMO -->
                     <div class="flex gap-3 relative group">
-                        <div class="absolute -top-8 right-0 bg-blue-600 text-white text-xs px-2 py-1 rounded shadow-lg animate-bounce">1. Context Controls</div>
-                        <div class="h-8 w-32 bg-blue-50 border border-blue-200 rounded flex items-center px-3 text-xs text-blue-600 font-bold">Application ▼</div>
-                        <div class="h-8 w-32 bg-blue-50 border border-blue-200 rounded flex items-center px-3 text-xs text-blue-600 font-bold">Viewpoint ▼</div>
+                        <div class="absolute -top-8 right-0 bg-blue-600 text-white text-xs px-2 py-1 rounded shadow-lg animate-bounce" id="context-hint">1. Context Controls</div>
+                        
+                        <!-- Application Dropdown -->
+                        <div class="relative">
+                            <select class="h-8 w-32 bg-blue-50 border border-blue-200 rounded px-2 text-xs text-blue-600 font-bold appearance-none cursor-pointer hover:bg-blue-100 focus:ring-2 focus:ring-blue-500 outline-none">
+                                <option>EXTERIOR</option>
+                                <option>INTERIOR</option>
+                            </select>
+                            <i class="fa-solid fa-caret-down absolute right-2 top-1/2 -translate-y-1/2 text-blue-600 text-[10px] pointer-events-none"></i>
+                        </div>
+
+                        <!-- Viewpoint Dropdown -->
+                        <div class="relative">
+                            <select class="h-8 w-32 bg-blue-50 border border-blue-200 rounded px-2 text-xs text-blue-600 font-bold appearance-none cursor-pointer hover:bg-blue-100 focus:ring-2 focus:ring-blue-500 outline-none">
+                                <option>FROM OUTSIDE</option>
+                                <option>FROM INSIDE</option>
+                            </select>
+                            <i class="fa-solid fa-caret-down absolute right-2 top-1/2 -translate-y-1/2 text-blue-600 text-[10px] pointer-events-none"></i>
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex gap-6 h-[500px]">
+                <div class="flex gap-6 h-[550px]">
                     <!-- Left Column: Input & Drafts -->
                     <div class="w-1/4 flex flex-col gap-4">
                         <!-- 2. Input Area -->
-                        <div class="bg-slate-50 border-2 border-dashed border-slate-200 rounded-xl p-4 flex flex-col items-center justify-center h-48 relative">
+                        <div id="input-zone" class="bg-slate-50 border-2 border-dashed border-slate-200 rounded-xl p-4 flex flex-col items-center justify-center h-48 relative hover:bg-slate-100 transition-colors cursor-pointer group">
                             <div class="absolute -top-3 left-2 bg-slate-600 text-white text-[10px] px-2 py-0.5 rounded">2. Input Stage</div>
-                            <div class="w-12 h-12 bg-slate-200 rounded-full mb-2 flex items-center justify-center text-slate-400"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-                            <div class="h-2 w-20 bg-slate-200 rounded"></div>
-                            <div class="text-[8px] text-slate-400 mt-2 text-center px-2">Drag & Drop or Click to Upload</div>
+                            
+                            <!-- Default State -->
+                            <div id="input-default" class="flex flex-col items-center w-full">
+                                <div class="w-12 h-12 bg-slate-200 rounded-full mb-2 flex items-center justify-center text-slate-400 group-hover:text-brand-500 transition-colors"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                                <div class="text-[8px] text-slate-400 mt-2 text-center px-2 mb-3">Drag & Drop or Click</div>
+                                <button onclick="runDemoUpload()" class="px-3 py-1 bg-white border border-slate-300 text-slate-600 rounded shadow-sm text-[9px] font-bold hover:bg-brand-50 hover:text-brand-600 hover:border-brand-300 transition-all">Demo House</button>
+                            </div>
+
+                            <!-- Active State (Hidden) -->
+                            <img id="input-preview" src="" class="hidden w-full h-full object-contain" onerror="this.src='https://images.unsplash.com/photo-1513584685908-99c778745a54?auto=format&fit=crop&w=300&q=60'; this.classList.remove('hidden');">
                         </div>
                         
                         <!-- 3. Drafts Strip -->
                         <div class="flex-1 bg-white border border-slate-200 rounded-xl p-3 flex flex-col relative">
                             <div class="absolute -top-3 left-2 bg-slate-600 text-white text-[10px] px-2 py-0.5 rounded">3. Concepts (Thumbnails)</div>
                             <div class="text-xs font-bold text-slate-400 mb-2 uppercase">AI Concepts</div>
-                            <div class="flex-1 flex flex-col gap-2 overflow-y-auto">
-                                <div class="h-24 bg-brand-50 border border-brand-200 rounded-lg w-full shrink-0 relative overflow-hidden">
-                                    <div class="absolute inset-0 flex items-center justify-center text-brand-200"><i class="fa-solid fa-image text-2xl"></i></div>
-                                    <div class="absolute bottom-0 w-full bg-black/50 text-white text-[8px] p-1">Concept 1</div>
-                                </div>
-                                <div class="h-24 bg-slate-50 border border-slate-100 rounded-lg w-full shrink-0 relative overflow-hidden">
-                                     <div class="absolute inset-0 flex items-center justify-center text-slate-200"><i class="fa-solid fa-image text-2xl"></i></div>
-                                    <div class="absolute bottom-0 w-full bg-black/50 text-white text-[8px] p-1">Concept 2</div>
-                                </div>
-                                <div class="h-24 bg-slate-50 border border-slate-100 rounded-lg w-full shrink-0 relative overflow-hidden">
-                                     <div class="absolute inset-0 flex items-center justify-center text-slate-200"><i class="fa-solid fa-image text-2xl"></i></div>
-                                    <div class="absolute bottom-0 w-full bg-black/50 text-white text-[8px] p-1">Concept 3</div>
-                                </div>
+                            <div class="flex-1 flex flex-col gap-3 overflow-y-auto" id="drafts-list">
+                                <!-- Drafts injected here -->
+                                <div class="flex items-center justify-center h-full text-[10px] text-slate-300 italic text-center">Waiting for input...</div>
                             </div>
                         </div>
                     </div>
@@ -283,20 +306,35 @@
                     <div class="flex-1 flex flex-col gap-4">
                         <!-- 4. Preview Canvas -->
                         <div class="flex-1 bg-slate-900 rounded-xl relative flex items-center justify-center overflow-hidden group">
-                            <div class="absolute top-4 left-4 bg-black/50 text-white text-[10px] px-2 py-1 rounded backdrop-blur">4. Preview (Big Screen)</div>
-                            <i class="fa-solid fa-image text-6xl text-slate-700"></i>
+                            <div class="absolute top-4 left-4 bg-black/50 text-white text-[10px] px-2 py-1 rounded backdrop-blur z-10">4. Preview (Big Screen)</div>
+                            <img id="main-preview" src="" class="hidden w-full h-full object-cover transition-opacity duration-500" onerror="this.src='https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?auto=format&fit=crop&w=1200&q=80'">
+                            <div id="preview-placeholder" class="text-slate-700 flex flex-col items-center">
+                                <i class="fa-solid fa-image text-6xl mb-2"></i>
+                                <span class="text-xs">Select a Concept</span>
+                            </div>
                             
                             <!-- 5. Refinement Panel Overlay -->
-                            <div class="absolute bottom-0 left-0 right-0 h-1/3 bg-purple-50/95 border-t border-purple-200 flex flex-col items-center justify-center text-[8px] font-bold text-purple-600 shadow-inner p-2">
-                                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-600 text-white text-[10px] px-2 py-0.5 rounded shadow-lg">5. Smart Refinement Panel</div>
-                                <div class="mb-2 text-xs">Select Adjustment</div>
-                                <div class="flex gap-2 w-full justify-center">
-                                     <div class="h-8 w-16 bg-white rounded border border-purple-200 flex items-center justify-center">Wall Color</div>
-                                     <div class="h-8 w-16 bg-white rounded border-purple-200 flex items-center justify-center">Hardware</div>
-                                     <div class="h-8 w-16 bg-white rounded border-purple-200 flex items-center justify-center">Glass</div>
+                            <div id="wireframe-panel" class="absolute bottom-0 left-0 right-0 bg-white rounded-t-xl shadow-[0_-10px_30px_rgba(0,0,0,0.2)] p-4 transform translate-y-full transition-transform duration-300 ease-out">
+                                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-600 text-white text-[10px] px-2 py-0.5 rounded shadow-lg cursor-pointer" onclick="togglePanel()">5. Smart Refinement Panel ▲</div>
+                                <div class="mb-2 text-[10px] font-bold text-slate-400 uppercase flex justify-between">
+                                    <span>Select Adjustment</span>
+                                    <span onclick="togglePanel()" class="cursor-pointer hover:text-slate-600"><i class="fa-solid fa-xmark"></i></span>
                                 </div>
-                                <div class="mt-2 w-full px-4">
-                                    <div class="h-6 bg-white rounded border border-slate-200 text-[8px] flex items-center px-2 text-slate-400">Custom Prompt Input...</div>
+                                
+                                <!-- TABS -->
+                                <div class="flex gap-2 w-full justify-center mb-3">
+                                     <button onclick="toggleWireframeOptions('WALL')" class="h-8 w-20 bg-white rounded border border-purple-200 flex items-center justify-center shadow-sm text-[9px] font-bold hover:bg-purple-50 hover:text-purple-600 focus:ring-2 focus:ring-purple-500 transition-all">Wall Color</button>
+                                     <button onclick="toggleWireframeOptions('HARDWARE')" class="h-8 w-20 bg-white rounded border border-purple-200 flex items-center justify-center shadow-sm text-[9px] font-bold hover:bg-purple-50 hover:text-purple-600 focus:ring-2 focus:ring-purple-500 transition-all">Hardware</button>
+                                     <button onclick="toggleWireframeOptions('GLASS')" class="h-8 w-20 bg-white rounded border border-purple-200 flex items-center justify-center shadow-sm text-[9px] font-bold hover:bg-purple-50 hover:text-purple-600 focus:ring-2 focus:ring-purple-500 transition-all">Glass</button>
+                                </div>
+
+                                <!-- DYNAMIC OPTIONS (Initially Hidden) -->
+                                <div id="wireframe-options" class="flex gap-2 justify-center w-full h-0 overflow-hidden transition-all duration-300">
+                                    <!-- Options injected here -->
+                                </div>
+
+                                <div class="mt-2 w-full px-4 border-t border-slate-100 pt-2">
+                                    <div class="h-6 bg-white rounded border border-slate-200 text-[8px] flex items-center px-2 text-slate-400 italic">Custom Prompt Input...</div>
                                 </div>
                             </div>
                         </div>
@@ -305,102 +343,21 @@
                     <!-- Right Column: Logic & Chat -->
                     <div class="w-1/4 flex flex-col gap-4">
                         <!-- 6. Logic Output -->
-                        <div class="h-1/3 bg-slate-800 rounded-xl p-3 relative">
+                        <div class="h-1/3 bg-slate-800 rounded-xl p-3 relative flex flex-col">
                             <div class="absolute -top-3 right-2 bg-emerald-600 text-white text-[10px] px-2 py-0.5 rounded">6. Gemini Reasoning</div>
-                            <div class="space-y-2 mt-2">
-                                <div class="h-2 w-full bg-slate-700 rounded"></div>
-                                <div class="h-2 w-2/3 bg-slate-700 rounded"></div>
-                                <div class="h-2 w-3/4 bg-slate-700 rounded"></div>
+                            <div class="flex-1 overflow-y-auto font-mono text-[8px] text-slate-400 mt-2" id="logic-stream">
+                                > System Ready.<br>
+                                > Waiting for Input...
                             </div>
                         </div>
                         
                         <!-- 7. Chat -->
-                        <div class="flex-1 bg-white border border-slate-200 rounded-xl p-3 relative">
+                        <div class="flex-1 bg-white border border-slate-200 rounded-xl p-3 relative flex flex-col">
                             <div class="absolute -top-3 right-2 bg-slate-400 text-white text-[10px] px-2 py-0.5 rounded">7. Chat History</div>
-                            <div class="h-full flex flex-col justify-end">
-                                <div class="h-8 bg-slate-100 rounded-lg mb-2 w-3/4"></div>
-                                <div class="h-8 bg-blue-50 rounded-lg mb-2 w-3/4 self-end"></div>
-                                <div class="h-10 border border-slate-200 rounded-lg mt-2"></div>
+                            <div class="flex-1 overflow-y-auto space-y-2 mt-2" id="chat-stream">
+                                <!-- Chat messages -->
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SMART REFINEMENT SIMULATOR -->
-    <section id="touchup" class="py-20 bg-white border-t border-slate-200">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <span class="text-purple-600 font-bold tracking-wide text-xs uppercase bg-purple-50 px-3 py-1 rounded-full border border-purple-100">Interactive Logic Demo</span>
-                <h2 class="text-3xl font-bold text-slate-900 mt-4">The "Smart Refinement" Engine</h2>
-                <p class="text-slate-500 mt-2 max-w-2xl mx-auto">
-                    Select a scenario below to see how the AI acts as a consultant, offering context-aware advice rather than generic lists.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                <!-- Controls -->
-                <div class="lg:col-span-4 space-y-6">
-                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
-                        <h3 class="text-xs font-bold text-slate-400 uppercase mb-4 tracking-wider">1. Select Context</h3>
-                        <div class="space-y-2">
-                            <button onclick="loadScenario('MODERN')" id="btn-modern" class="w-full text-left p-3 rounded-lg border border-slate-200 hover:border-brand-500 hover:bg-brand-50 transition-all text-sm font-bold text-slate-700 focus:ring-2 focus:ring-brand-500 scenario-btn flex items-center gap-3">
-                                <div class="w-8 h-8 rounded bg-white border border-slate-200 flex items-center justify-center text-slate-500"><i class="fa-solid fa-building"></i></div>
-                                <div><div>Modern Minimalist</div><div class="text-[10px] text-slate-400 font-normal">Interior Foyer</div></div>
-                            </button>
-                            <button onclick="loadScenario('FARMHOUSE')" id="btn-farm" class="w-full text-left p-3 rounded-lg border border-slate-200 hover:border-brand-500 hover:bg-brand-50 transition-all text-sm font-bold text-slate-700 focus:ring-2 focus:ring-brand-500 scenario-btn flex items-center gap-3">
-                                <div class="w-8 h-8 rounded bg-white border border-slate-200 flex items-center justify-center text-slate-500"><i class="fa-solid fa-house-chimney"></i></div>
-                                <div><div>White Farmhouse</div><div class="text-[10px] text-slate-400 font-normal">Exterior Facade</div></div>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
-                        <h3 class="text-xs font-bold text-slate-400 uppercase mb-4 tracking-wider">2. Select Tweak</h3>
-                        <div class="grid grid-cols-3 gap-2">
-                            <button onclick="triggerTweak('WALL')" class="p-2 bg-white border border-slate-200 rounded text-xs font-medium hover:text-brand-600 hover:border-brand-500 transition-colors">Wall Color</button>
-                            <button onclick="triggerTweak('HARDWARE')" class="p-2 bg-white border border-slate-200 rounded text-xs font-medium hover:text-brand-600 hover:border-brand-500 transition-colors">Hardware</button>
-                            <button onclick="triggerTweak('GLASS')" class="p-2 bg-white border border-slate-200 rounded text-xs font-medium hover:text-brand-600 hover:border-brand-500 transition-colors">Glass</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Simulator -->
-                <div class="lg:col-span-8">
-                    <div class="bg-slate-900 rounded-xl p-1 shadow-2xl overflow-hidden border border-slate-700">
-                        <div class="bg-slate-800 px-4 py-2 flex items-center gap-2">
-                            <div class="flex gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div><div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div><div class="w-2.5 h-2.5 rounded-full bg-green-500"></div></div>
-                            <div class="ml-4 bg-slate-900 rounded px-3 py-1 text-[10px] text-slate-500 font-mono flex-1 text-center">door-ai-studio.app/refine</div>
-                        </div>
-                        <div class="bg-white h-[400px] relative flex flex-col">
-                            <div class="flex-1 bg-slate-100 flex items-center justify-center relative overflow-hidden bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
-                                <div class="text-center opacity-40 bg-white/80 p-6 rounded-xl backdrop-blur-sm border border-slate-200">
-                                    <i class="fa-solid fa-image text-6xl mb-3 text-slate-300"></i>
-                                    <p class="text-sm font-bold text-slate-500 uppercase tracking-wider" id="preview-status">Select a Scenario...</p>
-                                </div>
-                                <div id="sim-panel" class="absolute bottom-0 left-0 right-0 bg-white rounded-t-2xl shadow-[0_-10px_40px_rgba(0,0,0,0.15)] transform translate-y-full transition-transform duration-500 ease-out p-6 z-10 border-t border-slate-100">
-                                    <div class="flex justify-between items-center mb-4 border-b border-slate-100 pb-4">
-                                        <h3 class="font-bold text-slate-800 flex items-center gap-2">
-                                            <i class="fa-solid fa-wand-magic-sparkles text-purple-500"></i> 
-                                            <span id="panel-title">Refine Details</span>
-                                        </h3>
-                                        <button onclick="closeSimPanel()" class="text-slate-400 hover:text-slate-600 transition-colors"><i class="fa-solid fa-xmark"></i></button>
-                                    </div>
-                                    <div class="bg-blue-50 p-3 rounded-lg border border-blue-100 mb-5 flex gap-3 items-start">
-                                        <div class="bg-white p-1.5 rounded-full shadow-sm text-blue-600 shrink-0 text-xs"><i class="fa-solid fa-robot"></i></div>
-                                        <div><p class="text-xs text-blue-800 font-medium leading-relaxed" id="ai-advice">...</p></div>
-                                    </div>
-                                    <div class="grid grid-cols-3 gap-3" id="smart-options"></div>
-                                    <div class="mt-5 pt-4 border-t border-slate-100">
-                                        <div class="relative">
-                                            <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-lg py-2.5 pl-4 pr-10 text-xs focus:ring-2 focus:ring-brand-500 outline-none transition-all" placeholder="Or type your custom request...">
-                                            <button class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-brand-600 transition-colors"><i class="fa-solid fa-paper-plane text-xs"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="h-8 border border-slate-200 rounded mt-2 bg-slate-50 text-[8px] flex items-center px-2 text-slate-400">Type to refine...</div>
                         </div>
                     </div>
                 </div>
@@ -472,66 +429,129 @@
     </section>
 
     <script>
-        // --- SIMULATION LOGIC ---
-        const LOGIC_DATA = {
-            "MODERN": {
-                "WALL": { advice: "For <b>Modern</b>, avoid warm tones. Recommend cool neutrals or bold darks.", opts: [{label:"Concrete",sub:"Industrial"},{label:"Charcoal",sub:"Moody"},{label:"Pure White",sub:"Minimalist"}] },
-                "HARDWARE": { advice: "Modern doors need sleek hardware. Geometric shapes work best.", opts: [{label:"Matte Black",sub:"Tubular"},{label:"Satin Nickel",sub:"Lever"},{label:"Keyless",sub:"Smart"}] },
-                "GLASS": { advice: "Favors transparency or geometric frosting.", opts: [{label:"Clear Low-E",sub:"Max Light"},{label:"Acid Etched",sub:"Privacy"},{label:"Reed Glass",sub:"Linear"}] }
-            },
-            "FARMHOUSE": {
-                "WALL": { advice: "Farmhouse relies on texture (Siding/Board & Batten).", opts: [{label:"White Shiplap",sub:"Classic"},{label:"Navy Siding",sub:"Bold"},{label:"Sage Green",sub:"Organic"}] },
-                "HARDWARE": { advice: "Rustic charm is key. Go for substantial, dark metals.", opts: [{label:"Iron Grip",sub:"Rustic"},{label:"Oil Bronze",sub:"Traditional"},{label:"Black Knob",sub:"Simple"}] },
-                "GLASS": { advice: "Divided lites (grids) are essential for authenticity.", opts: [{label:"Clear SDL",sub:"Grid"},{label:"Seeded",sub:"Vintage"},{label:"Rain",sub:"Textured"}] }
-            }
+        // --- LIVE DEMO LOGIC (EMBEDDED IMAGES) ---
+        const DEMO_ASSETS = {
+            // Using Unsplash as reliable fallback if local files missing
+            input: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=800&q=80",
+            concepts: [
+                { img: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?auto=format&fit=crop&w=300&q=60", label: "MODERN MINIMALIST", backup: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?auto=format&fit=crop&w=300&q=60" },
+                { img: "https://images.unsplash.com/photo-1513584685908-99c778745a54?auto=format&fit=crop&w=300&q=60", label: "CRAFTSMAN LODGE", backup: "https://images.unsplash.com/photo-1513584685908-99c778745a54?auto=format&fit=crop&w=300&q=60" },
+                { img: "https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=300&q=60", label: "MEDITERRANEAN VILLA", backup: "https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=300&q=60" }
+            ]
         };
 
-        let currentScenario = 'MODERN';
+        // TRY TO LOAD LOCAL IMAGES FIRST (If user saved them)
+        // This is a trick: we attempt to load local, if error, we keep the unsplash defaults
+        const img1 = new Image(); img1.src = "1.jpg"; img1.onload = () => { DEMO_ASSETS.concepts[0].img = "1.jpg"; };
+        const img2 = new Image(); img2.src = "2.jpg"; img2.onload = () => { DEMO_ASSETS.concepts[1].img = "2.jpg"; };
+        const img3 = new Image(); img3.src = "3.jpg"; img3.onload = () => { DEMO_ASSETS.concepts[2].img = "3.jpg"; };
+        const imgInput = new Image(); imgInput.src = "input image.png"; imgInput.onload = () => { DEMO_ASSETS.input = "input image.png"; };
 
-        function loadScenario(style) {
-            if(style) { currentScenario = style; closeSimPanel(); }
+
+        function runDemoUpload() {
+            // 1. Update Input Area
+            document.getElementById('input-default').classList.add('hidden');
+            const inputImg = document.getElementById('input-preview');
+            inputImg.src = DEMO_ASSETS.input;
+            inputImg.classList.remove('hidden');
+
+            // 2. Simulate Processing
+            addLog("> Image Uploaded.");
+            addLog("> Analyzing Architecture...");
+            addChat("I see a standalone door product. Identifying style...");
             
-            const styles = { 'MODERN': 'Modern Minimalist', 'FARMHOUSE': 'White Farmhouse' };
-            const previewStatus = document.getElementById('preview-status');
-            if (previewStatus) previewStatus.innerText = `Active Scene: ${styles[currentScenario]}`;
-            
-            document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('ring-2', 'ring-brand-500', 'bg-brand-50'));
-            const btnId = style === 'MODERN' ? 'btn-modern' : 'btn-farm';
-            const btn = document.getElementById(btnId);
-            if(btn) btn.classList.add('ring-2', 'ring-brand-500', 'bg-brand-50');
+            setTimeout(() => {
+                addLog("> Style Detected: MIXED.");
+                addLog("> Generating 3 Concepts...");
+                addChat("Here are 3 architectural contexts that fit this door perfectly.");
+                renderConcepts();
+            }, 800);
         }
 
-        function triggerTweak(element) {
-            const data = LOGIC_DATA[currentScenario][element];
-            const panel = document.getElementById('sim-panel');
-            const title = document.getElementById('panel-title');
-            const advice = document.getElementById('ai-advice');
-            const options = document.getElementById('smart-options');
-
-            if (!panel || !data) return;
-
-            title.innerText = `Refine ${element === 'WALL' ? 'Wall Color' : element === 'HARDWARE' ? 'Hardware' : 'Glass'}`;
-            advice.innerHTML = data.advice;
-            options.innerHTML = '';
+        function renderConcepts() {
+            const container = document.getElementById('drafts-list');
+            container.innerHTML = ''; // Clear waiting message
             
-            data.opts.forEach((opt, i) => {
-                options.innerHTML += `
-                    <button class="p-3 bg-white border border-slate-200 rounded-lg shadow-sm hover:border-brand-500 hover:bg-brand-50 text-left transition-all animate-pop" style="animation-delay: ${i * 0.1}s">
-                        <div class="font-bold text-xs text-slate-800">${opt.label}</div>
-                        <div class="text-[10px] text-slate-400">${opt.sub}</div>
-                    </button>
+            DEMO_ASSETS.concepts.forEach((c, i) => {
+                // Stagger animation
+                setTimeout(() => {
+                    const el = document.createElement('div');
+                    el.className = "h-24 bg-slate-900 border border-slate-200 rounded-lg w-full shrink-0 relative overflow-hidden group hover:ring-2 hover:ring-brand-400 cursor-pointer transition-all animate-pop";
+                    el.innerHTML = `
+                        <img src="${c.img}" onerror="this.src='${c.backup}'" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute bottom-0 w-full bg-black/70 text-white text-[8px] p-1 font-bold text-center">${c.label}</div>
+                    `;
+                    el.onclick = () => selectConcept(c.img, c.backup, c.label, el);
+                    container.appendChild(el);
+                }, i * 200);
+            });
+        }
+
+        function selectConcept(img, backup, label, el) {
+            // Highlight
+            document.querySelectorAll('#drafts-list > div').forEach(d => d.classList.remove('ring-2', 'ring-brand-600'));
+            el.classList.add('ring-2', 'ring-brand-600');
+
+            // Update Preview
+            document.getElementById('preview-placeholder').classList.add('hidden');
+            const main = document.getElementById('main-preview');
+            main.src = img;
+            main.onerror = function() { this.src = backup; }; // Fallback if file missing
+            main.classList.remove('hidden');
+
+            // Update Logic
+            addLog(`> Concept Selected: ${label}`);
+            addChat(`Previewing <b>${label}</b>. Click "Refinement Panel" to tweak details.`);
+            
+            // Auto-open panel hint
+            document.getElementById('wireframe-panel').classList.remove('translate-y-full');
+        }
+
+        function togglePanel() {
+            const panel = document.getElementById('wireframe-panel');
+            panel.classList.toggle('translate-y-full');
+        }
+
+        function toggleWireframeOptions(type) {
+            const container = document.getElementById('wireframe-options');
+            container.style.height = '40px'; // Expand
+            container.innerHTML = ''; // Clear previous
+            
+            let options = [];
+            // Dynamic options based on "Modern" assumption for demo
+            if(type === 'WALL') options = ['Concrete', 'Charcoal', 'Pure White'];
+            if(type === 'HARDWARE') options = ['Square', 'Tubular', 'Grip'];
+            if(type === 'GLASS') options = ['Clear', 'Frosted', 'Rain'];
+
+            options.forEach((opt, i) => {
+                container.innerHTML += `
+                    <div class="option-pill h-8 bg-purple-50 border border-purple-200 rounded px-3 flex items-center justify-center text-[9px] text-purple-700 font-bold shadow-sm cursor-pointer hover:bg-purple-100" style="animation-delay: ${i * 0.1}s" onclick="selectTweak('${opt}')">
+                        ${opt}
+                    </div>
                 `;
             });
-
-            panel.classList.remove('translate-y-full');
         }
 
-        function closeSimPanel() {
-            const panel = document.getElementById('sim-panel');
-            if(panel) panel.classList.add('translate-y-full');
+        function selectTweak(opt) {
+            addLog(`> Refinement Applied: ${opt}`);
+            addChat(`Updating render with <b>${opt}</b>...`);
         }
 
-        document.addEventListener('DOMContentLoaded', () => { loadScenario('MODERN'); });
+        function addLog(msg) {
+            const log = document.getElementById('logic-stream');
+            log.innerHTML += `${msg}<br>`;
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function addChat(msg) {
+            const chat = document.getElementById('chat-stream');
+            chat.innerHTML += `
+                <div class="bg-slate-50 p-2 rounded text-[9px] text-slate-600 animate-pop mb-1 border border-slate-100">
+                    <span class="font-bold text-brand-600">AI:</span> ${msg}
+                </div>
+            `;
+            chat.scrollTop = chat.scrollHeight;
+        }
     </script>
 </body>
 </html>
